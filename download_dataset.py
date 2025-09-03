@@ -1,20 +1,19 @@
 """
-Download the Ballroom dataset
+Download the Ballroom audio dataset (data1).
+Annotations (data2) are included in the repository.
 """
 
 import os
 import urllib.request
 import tarfile
 import sys
-import tarfile
 import shutil
 
 def download_dataset():
     data1_url = "https://mtg.upf.edu/ismir2004/contest/tempoContest/data1.tar.gz"
-    data2_url = "https://mtg.upf.edu/ismir2004/contest/tempoContest/data2.tar.gz"
     
-    if os.path.exists("data1") and os.path.exists("data2"):
-        print("Dataset folders already exist. Delete them to re-download.")
+    if os.path.exists("data1"):
+        print("Audio dataset (data1) already exists. Delete it to re-download.")
         return
     
     def download_progress(block_num, block_size, total_size):
@@ -25,36 +24,20 @@ def download_dataset():
     
     try:
         # Download and organize data1
-        if not os.path.exists("data1"):
-            print(f"Downloading data1 (audio files) from {data1_url}...")
-            urllib.request.urlretrieve(data1_url, "data1.tar.gz", download_progress)
-            print("\nExtracting data1...", end=" ")
-            with tarfile.open("data1.tar.gz", "r:gz") as tar:
-                tar.extractall(".")
-            os.remove("data1.tar.gz")
-            
-            # Move BallroomData into data1
-            if os.path.exists("BallroomData"):
-                os.makedirs("data1", exist_ok=True)
-                shutil.move("BallroomData", "data1/BallroomData")
-            print("Done.")
+        print(f"Downloading audio files from {data1_url}...")
+        urllib.request.urlretrieve(data1_url, "data1.tar.gz", download_progress)
+        print("\nExtracting audio files...", end=" ")
+        with tarfile.open("data1.tar.gz", "r:gz") as tar:
+            tar.extractall(".")
+        os.remove("data1.tar.gz")
         
-        # Download and organize data2
-        if not os.path.exists("data2"):
-            print(f"Downloading data2 (annotations) from {data2_url}...")
-            urllib.request.urlretrieve(data2_url, "data2.tar.gz", download_progress)
-            print("\nExtracting data2...", end=" ")
-            with tarfile.open("data2.tar.gz", "r:gz") as tar:
-                tar.extractall(".")
-            os.remove("data2.tar.gz")
-            
-            # Move BallroomAnnotations into data2
-            if os.path.exists("BallroomAnnotations"):
-                os.makedirs("data2", exist_ok=True)
-                shutil.move("BallroomAnnotations", "data2/BallroomAnnotations")
-            print("Done.")
+        # Move BallroomData into data1
+        if os.path.exists("BallroomData"):
+            os.makedirs("data1", exist_ok=True)
+            shutil.move("BallroomData", "data1/BallroomData")
+        print("Done.")
 
-        print("\nDataset ready.")
+        print("\nAudio dataset ready.")
             
     except Exception as e:
         print(f"\nError downloading dataset: {e}")

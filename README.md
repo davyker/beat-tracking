@@ -12,13 +12,13 @@ A beat tracking system for ballroom dance music using onset detection and tempo 
 pip install -r requirements.txt
 ```
 
-### 3. Download dataset
+### 3. Download audio files
 
 ```bash
 python download_dataset.py
 ```
 
-This will download the Ballroom dataset (~1.8GB) from the GitHub release and extract it to `data1/` and `data2/` folders.
+This will download the Ballroom audio files (~1.8GB) and extract them to `data1/`. The annotations in `data2/` are already included in this repository.
 
 ## Usage
 
