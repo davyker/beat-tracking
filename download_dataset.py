@@ -26,7 +26,7 @@ def download_dataset():
         
         # Download data1
         if not os.path.exists("data1"):
-            print(f"Downloading data1 (audio files) from {data1_url}...", end=" ")
+            print(f"Downloading data1 (audio files) from {data1_url}...")
             urllib.request.urlretrieve(data1_url, "data1.tar.gz", download_progress)
             print("Extracting data1...", end=" ")
             with tarfile.open("data1.tar.gz", "r:gz") as tar:
@@ -36,7 +36,7 @@ def download_dataset():
         
         # Download data2
         if not os.path.exists("data2"):
-            print(f"Downloading data2 (annotations) from {data2_url}...", end=" ")
+            print(f"Downloading data2 (annotations) from {data2_url}...")
             urllib.request.urlretrieve(data2_url, "data2.tar.gz", download_progress)
             print("Extracting data2...", end=" ")
             with tarfile.open("data2.tar.gz", "r:gz") as tar:
