@@ -4,49 +4,54 @@ Download the Ballroom dataset
 
 import os
 import urllib.request
-import zipfile
+import tarfile
 import sys
 
 def download_dataset():
-    dataset_url = "https://github.com/davyker/beat-tracking/releases/download/v1.0/ballroom-dataset.zip"
-    zip_filename = "ballroom-dataset.zip"
+    data1_url = "https://mtg.upf.edu/ismir2004/contest/tempoContest/data1.tar.gz"
+    data2_url = "https://mtg.upf.edu/ismir2004/contest/tempoContest/data2.tar.gz"
     
     if os.path.exists("data1") and os.path.exists("data2"):
         print("Dataset folders already exist. Delete them to re-download.")
         return
     
-    print(f"Downloading Ballroom dataset from GitHub release...")
-    print(f"URL: {dataset_url}")
+    def download_progress(block_num, block_size, total_size):
+        downloaded = block_num * block_size
+        percent = min(downloaded * 100 / total_size, 100)
+        sys.stdout.write(f"\rProgress: {percent:.1f}%")
+        sys.stdout.flush()
     
     try:
-        def download_progress(block_num, block_size, total_size):
-            downloaded = block_num * block_size
-            percent = min(downloaded * 100 / total_size, 100)
-            sys.stdout.write(f"\rProgress: {percent:.1f}%")
-            sys.stdout.flush()
+        import tarfile
         
-        urllib.request.urlretrieve(dataset_url, zip_filename, download_progress)
-        print("\nDownload complete")
+        # Download data1
+        if not os.path.exists("data1"):
+            print(f"Downloading data1 (audio files) from {data1_url}...", end=" ")
+            urllib.request.urlretrieve(data1_url, "data1.tar.gz", download_progress)
+            print("Extracting data1...", end=" ")
+            with tarfile.open("data1.tar.gz", "r:gz") as tar:
+                tar.extractall(".")
+            os.remove("data1.tar.gz")
+            print("Done.")
         
-        print("Extracting dataset...")
-        with zipfile.ZipFile(zip_filename, 'r') as zip_ref:
-            zip_ref.extractall(".")
-        print("Extraction complete")
-        
-        os.remove(zip_filename)
-        print("Cleaned up zip file.")
-        
-        print("\nDataset ready. Folders created:")
-        if os.path.exists("data1"):
-            print("  - data1/")
-        if os.path.exists("data2"):
-            print("  - data2/")
+        # Download data2
+        if not os.path.exists("data2"):
+            print(f"Downloading data2 (annotations) from {data2_url}...", end=" ")
+            urllib.request.urlretrieve(data2_url, "data2.tar.gz", download_progress)
+            print("Extracting data2...", end=" ")
+            with tarfile.open("data2.tar.gz", "r:gz") as tar:
+                tar.extractall(".")
+            os.remove("data2.tar.gz")
+            print("Done.")
+
+        print("\nDataset ready.")
             
     except Exception as e:
         print(f"\nError downloading dataset: {e}")
-        print("\nPlease download manually from:")
-        print(f"  {dataset_url}")
-        print("Then extract the zip file in this directory.")
+        print("Try downloading manually from:")
+        print(f"  data1: {data1_url}")
+        print(f"  data2: {data2_url}")
+        print("Then extract the tar.gz files.")
 
 if __name__ == "__main__":
     download_dataset()
