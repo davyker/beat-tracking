@@ -4,12 +4,7 @@ A beat tracking system for ballroom dance music using onset detection and tempo 
 
 ## Setup
 
-### 1. Create conda environment
-
-```bash
-conda create -n beat-tracking python=3.10
-conda activate beat-tracking
-```
+### 1. Create Python 3.10 environment
 
 ### 2. Install dependencies
 
