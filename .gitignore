@@ -1,0 +1,8 @@
+data1/
+data2/
+ballroom-dataset.zip
+
+__pycache__/
+
+final_results/
+*.png
