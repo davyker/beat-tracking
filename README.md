@@ -42,6 +42,10 @@ python process_dataset.py --data_path data1/BallroomData --genre all --save
 python test.py
 ```
 
+### Results
+
+![Results by Genre](https://github.com/user-attachments/assets/0f1ea826-310e-44b3-8dc3-93e985c761f0)
+
 ## Project Structure
 
 - `onset_detection.py` - Core beat tracking algorithms
