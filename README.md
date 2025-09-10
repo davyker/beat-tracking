@@ -1,6 +1,5 @@
 # Beat Tracking
 
-## Overview
 A musical beat tracking system for that combines tempo estimation via autocorrelation with Bayesian beat selection. The algorithm addresses common issues like tempo drift and offbeat errors through a momentum-based beat adjustment mechanism that adapts to local timing variations while maintaining global tempo stability, and Bayesian scoring of candidates.
 
 ## Methods
@@ -9,7 +8,7 @@ A musical beat tracking system for that combines tempo estimation via autocorrel
 - **Candidate Selection**: Bayesian scoring of multiple tempo & beat candidates using log-likelihood of onset strengths
 - **Genre Adaptation**: Tempo priors customized for each ballroom dance style (90-135 for Cha-cha-cha, 160-180 for Jive, etc.)
 
-### Results
+## Results
 
 The algorithm achieces 85.6% F-measure across all genres.
 ChaChaCha, Quickstep, Tango, VienneseWaltz are easier, with scoring 90%+, being more rhythmic and having high-quality recordings.
