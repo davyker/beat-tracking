@@ -44,7 +44,8 @@ python test.py
 
 ### Results
 
-![Results by Genre](https://github.com/user-attachments/assets/0f1ea826-310e-44b3-8dc3-93e985c761f0)
+![Results by Genre - Table](https://github.com/user-attachments/assets/0f1ea826-310e-44b3-8dc3-93e985c761f0)
+![Results by Genre - Plot](https://github.com/user-attachments/assets/9f8df034-f31c-4a20-87bc-111519d3074d)
 
 ## Project Structure
 
